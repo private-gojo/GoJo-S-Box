@@ -1,20 +1,20 @@
 FROM alpine:3.21 AS downloader
 
-ARG SINGBOX_VERSION=1.13.8
+ARG SINGBOX_VERSION=1.11.0
 ARG TARGETARCH=amd64
 
 RUN apk add --no-cache wget ca-certificates && \
     wget -qO /tmp/sb.tar.gz \
         "https://github.com/SagerNet/sing-box/releases/download/v${SINGBOX_VERSION}/sing-box-${SINGBOX_VERSION}-linux-${TARGETARCH}.tar.gz" && \
     tar -xzf /tmp/sb.tar.gz -C /tmp && \
-    mv /tmp/sing-box-*/sing-box /sing-box && \
+    mv /tmp/sing-box-*/sing-box /sing-box
     chmod +x /sing-box && \
     rm -rf /tmp/*
 
 FROM alpine:3.21
 
 LABEL maintainer="private-gojo" \
-      version="1.13.8" \
+      version="1.11.0" \
       description="Sing-box VLESS WS Cloud Run"
 
 RUN apk add --no-cache ca-certificates
