@@ -26,3 +26,5 @@ ENV PORT=8080
 EXPOSE 8080
 
 ENTRYPOINT ["/sing-box", "run", "-c", "/etc/sing-box/config.json"]
+
+
