@@ -15,8 +15,7 @@
       "reuse_addr": true,
       "users": [
         {
-          "uuid": "143ba4e0-c1d7-484a-81b5-a96d7f85a574",
-          "flow": ""
+          "uuid": "143ba4e0-c1d7-484a-81b5-a96d7f85a574"
         }
       ],
       "multiplex": {
@@ -62,5 +61,3 @@
     ]
   }
 }
-
-
