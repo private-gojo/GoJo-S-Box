@@ -1,6 +1,6 @@
 FROM alpine:3.21 AS downloader
 
-ARG SINGBOX_VERSION=1.11.0
+ARG SINGBOX_VERSION=1.13.8
 ARG TARGETARCH=amd64
 
 RUN apk add --no-cache wget ca-certificates && \
