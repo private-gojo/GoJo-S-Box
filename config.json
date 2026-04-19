@@ -10,7 +10,9 @@
       "type": "vless",
       "listen": "0.0.0.0",
       "listen_port": 8080,
-      "tcp_fast_open": true,    
+      "tcp_fast_open": true,
+      "tcp_no_delay": true,
+      "reuse_addr": true,
       "users": [
         {
           "uuid": "143ba4e0-c1d7-484a-81b5-a96d7f85a574"
@@ -18,7 +20,7 @@
       ],
       "multiplex": {
         "enabled": true,
-        "padding": true,        
+        "padding": true,
         "brutal": {
           "enabled": true,
           "up_mbps": 1000,
@@ -29,8 +31,7 @@
         "type": "ws",
         "path": "/gojo/infinity-limitless",
         "max_early_data": 4096,
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "handshake_timeout": "15s"
+        "early_data_header_name": "Sec-WebSocket-Protocol"
       }
     }
   ],
@@ -52,4 +53,3 @@
     ]
   }
 }
-
