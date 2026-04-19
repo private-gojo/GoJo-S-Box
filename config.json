@@ -1,0 +1,64 @@
+{
+  "log": {
+    "level": "warn",
+    "output": "stderr",
+    "timestamp": false
+  },
+  "inbounds": [
+    {
+      "tag": "vless-ws-in",
+      "type": "vless",
+      "listen": "0.0.0.0",
+      "listen_port": 8080,
+      "tcp_fast_open": true,
+      "tcp_no_delay": true,
+      "reuse_addr": true,
+      "users": [
+        {
+          "uuid": "143ba4e0-c1d7-484a-81b5-a96d7f85a574",
+          "flow": ""
+        }
+      ],
+      "multiplex": {
+        "enabled": true,
+        "padding": true,
+        "max_connections": 8,
+        "min_streams": 16,
+        "max_streams": 128,
+        "brutal": {
+          "enabled": true,
+          "up_mbps": 1000,
+          "down_mbps": 1000
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/gojo/infinity-limitless",
+        "max_early_data": 4096,
+        "early_data_header_name": "Sec-WebSocket-Protocol",
+        "handshake_timeout": "15s"
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "direct",
+      "type": "direct",
+      "domain_strategy": "ipv4_only",
+      "fallback_delay": "50ms"
+    },
+    {
+      "tag": "block",
+      "type": "block"
+    }
+  ],
+  "route": {
+    "final": "direct",
+    "rules": [
+      {
+        "ip_is_private": true,
+        "outbound": "block"
+      }
+    ]
+  }
+}
