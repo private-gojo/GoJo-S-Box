@@ -22,7 +22,7 @@
       "transport": {
         "type": "ws",
         "path": "/gojo/infinity-limitless",
-        "max_early_data": 4096,
+        "max_early_data": 2048,
         "early_data_header_name": "Sec-WebSocket-Protocol"
       }
     }
@@ -31,8 +31,8 @@
     {
       "tag": "direct",
       "type": "direct",
-      "domain_strategy": "prefer_ipv4",
-      "fallback_delay": "50ms"
+      "domain_strategy": "ipv4_only",
+      "fallback_delay": "150ms"
     }
   ],
   "route": {
