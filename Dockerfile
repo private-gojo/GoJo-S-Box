@@ -13,7 +13,7 @@ RUN apk add --no-cache wget ca-certificates && \
 
 FROM scratch
 
-LABEL maintainer="gojo-lvl99" \
+LABEL maintainer="gojo-lvl100" \
       version="1.11.0" \
       description="Sing-box VLESS WS Cloud Run"
 
