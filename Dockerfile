@@ -11,20 +11,18 @@ RUN apk add --no-cache wget ca-certificates && \
     chmod +x /sing-box && \
     rm -rf /tmp/*
 
-FROM scratch
+FROM alpine:3.21
 
-LABEL maintainer="gojo-lvl100" \
+LABEL maintainer="private-gojo" \
       version="1.11.0" \
       description="Sing-box VLESS WS Cloud Run"
 
-COPY --from=downloader /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
+RUN apk add --no-cache ca-certificates
+
 COPY --from=downloader /sing-box /sing-box
 COPY config.json /etc/sing-box/config.json
 
 ENV PORT=8080
-
 EXPOSE 8080
 
 ENTRYPOINT ["/sing-box", "run", "-c", "/etc/sing-box/config.json"]
-
-
