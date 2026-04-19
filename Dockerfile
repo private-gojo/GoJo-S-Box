@@ -10,6 +10,7 @@ RUN apk add --no-cache wget ca-certificates && \
     mv /tmp/sing-box-*/sing-box /sing-box && \
     chmod +x /sing-box && \
     rm -rf /tmp/*
+
 FROM alpine:3.21
 
 LABEL maintainer="private-gojo" \
@@ -25,4 +26,3 @@ ENV PORT=8080
 EXPOSE 8080
 
 ENTRYPOINT ["/sing-box", "run", "-c", "/etc/sing-box/config.json"]
-
