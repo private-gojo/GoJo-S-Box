@@ -11,14 +11,13 @@ RUN apk add --no-cache wget ca-certificates && \
     chmod +x /sing-box && \
     rm -rf /tmp/*
 
-FROM alpine:3.21
+FROM scratch
 
 LABEL maintainer="private-gojo" \
       version="1.13.8" \
       description="Sing-box VLESS WS Cloud Run"
 
-RUN apk add --no-cache ca-certificates
-
+COPY --from=downloader /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 COPY --from=downloader /sing-box /sing-box
 COPY config.json /etc/sing-box/config.json
 
