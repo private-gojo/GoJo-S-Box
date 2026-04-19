@@ -1,30 +1,35 @@
-FROM alpine:3.21 AS downloader
+name: Build and Push to DockerHub
 
-ARG SINGBOX_VERSION=1.11.0
-ARG TARGETARCH=amd64
+on:
+  push:
+    branches:
+      - main
 
-RUN apk add --no-cache wget ca-certificates && \
-    wget -qO /tmp/sb.tar.gz \
-        "https://github.com/SagerNet/sing-box/releases/download/v${SINGBOX_VERSION}/sing-box-${SINGBOX_VERSION}-linux-${TARGETARCH}.tar.gz" && \
-    tar -xzf /tmp/sb.tar.gz -C /tmp && \
-    mv /tmp/sing-box-${SINGBOX_VERSION}-linux-${TARGETARCH}/sing-box /sing-box && \
-    chmod +x /sing-box && \
-    rm -rf /tmp/*
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
 
-FROM scratch
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-LABEL maintainer="gojo-lvl100" \
-      version="1.11.0" \
-      description="Sing-box VLESS WS Cloud Run"
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-COPY --from=downloader /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
-COPY --from=downloader /sing-box /sing-box
-COPY config.json /etc/sing-box/config.json
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-ENV PORT=8080
-
-EXPOSE 8080
-
-ENTRYPOINT ["/sing-box", "run", "-c", "/etc/sing-box/config.json"]
-
-
+      - name: Build and Push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          platforms: linux/amd64
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/gojo-s-box:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
