@@ -10,8 +10,7 @@
       "type": "vless",
       "listen": "0.0.0.0",
       "listen_port": 8080,
-      "tcp_fast_open": true,
-      "reuse_addr": true,
+      "tcp_fast_open": true,    
       "users": [
         {
           "uuid": "143ba4e0-c1d7-484a-81b5-a96d7f85a574"
