@@ -16,6 +16,15 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Validate sing-box config
+        run: |
+          wget -qO /tmp/sb.tar.gz \
+            "https://github.com/SagerNet/sing-box/releases/download/v1.11.0/sing-box-1.11.0-linux-amd64.tar.gz"
+          tar -xzf /tmp/sb.tar.gz -C /tmp
+          mv /tmp/sing-box-*/sing-box /tmp/sing-box
+          chmod +x /tmp/sing-box
+          /tmp/sing-box check -c config.json
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
