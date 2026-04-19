@@ -14,7 +14,7 @@ RUN apk add --no-cache wget ca-certificates && \
 FROM alpine:3.21
 
 LABEL maintainer="private-gojo" \
-      version="1.11.0" \
+      version="1.13.8" \
       description="Sing-box VLESS WS Cloud Run"
 
 RUN apk add --no-cache ca-certificates
