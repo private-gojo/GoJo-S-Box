@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'Dockerfile'
+      - 'config.json'
 
 jobs:
   build-and-push:
@@ -33,4 +36,3 @@ jobs:
             ${{ secrets.DOCKERHUB_USERNAME }}/gojo-s-box:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
-
