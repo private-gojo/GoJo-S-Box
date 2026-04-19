@@ -1,0 +1,31 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# GitHub
+.github/
+
+# Docker
+docker-compose.yml
+.dockerignore
+
+# Secrets / Sensitive
+*.env
+.env*
+*.pem
+*.key
+*.crt
+*.p12
+secrets/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docs
+README.md
+*.md
