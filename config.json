@@ -16,7 +16,7 @@
         }
       ],
       "multiplex": {
-        "enabled": true,
+        "enabled": false,
         "padding": true
       },
       "transport": {
