@@ -16,7 +16,7 @@
         }
       ],
       "multiplex": {
-        "enabled": false,
+        "enabled": true,
         "padding": true
       },
       "transport": {
@@ -31,7 +31,7 @@
     {
       "tag": "direct",
       "type": "direct",
-      "domain_strategy": "ipv4_only",
+      "domain_strategy": "AsIs",
       "fallback_delay": "150ms"
     }
   ],
@@ -39,7 +39,7 @@
     "final": "direct",
     "rules": [
       {
-        "ip_is_private": true,
+        "ip_is_private": false,
         "action": "reject"
       }
     ]
